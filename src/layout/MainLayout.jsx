@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const MainLayout = () => {
   return (
-    <div className="text-sm font-poppins text-primary tracking-wide">
+    <div className="text-sm font-poppins text-primary tracking-wide min-h-screen p-4 flex flex-col gap-4">
       <div className="sticky top-0 z-50">
         <Navbar />
       </div>

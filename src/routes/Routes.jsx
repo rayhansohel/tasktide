@@ -14,14 +14,14 @@ const Routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [{ path: "/", element: <Home /> }],
   },
 
   {
     path: "/",
     element: <AuthLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
@@ -31,7 +31,7 @@ const Routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       { path: "/dashboard", element: <Dashboard /> },
     ],
