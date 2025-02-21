@@ -6,9 +6,10 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
 import SocialLogin from "./SocialLogin";
 import Logo from "../assets/tasktide-logo.png";
-import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const RegisterForm = () => {
+  const axiosPublic = useAxiosPublic();
   const { registerWithEmailPassword } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,7 +80,7 @@ const RegisterForm = () => {
         email: email,
         role: "user",
       };
-      axios.post("/users", userInfo);
+      axiosPublic.post("/users", userInfo);
       toast.success("Registration successful!");
       navigate(from, { replace: true });
     } catch (err) {

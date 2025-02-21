@@ -4,10 +4,11 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
-import axios from "axios";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const SocialLogin = ({ onSuccess }) => {
+  const axiosPublic = useAxiosPublic();
   const { signInWithGoogle } = useContext(AuthContext);
 
   const handleGoogleSignIn = () => {
@@ -19,7 +20,7 @@ const SocialLogin = ({ onSuccess }) => {
           email: user?.email,
           role: "user"
         };
-        axios.post("/users", userInfo);
+        axiosPublic.post("/users", userInfo);
         toast.success("Login with Google successful!");
         onSuccess();
       })
