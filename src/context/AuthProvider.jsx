@@ -12,8 +12,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
-import axios from "axios";
-
 
 const auth = getAuth(app);
 
@@ -34,34 +32,18 @@ const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(auth, googleProvider);
       setUser(result.user);
 
-      const idToken = await result.user.getIdToken();
-      localStorage.setItem("authToken", idToken);
-
       return result.user;
     } catch (err) {
       handleError(err);
     }
   };
 
-  const registerWithEmailPassword = async (
-    email,
-    password,
-    displayName,
-    photoURL
-  ) => {
+  const registerWithEmailPassword = async (email, password, displayName, photoURL) => {
     setError(null);
     try {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
+      const result = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(result.user, { displayName, photoURL });
       setUser({ ...result.user, displayName, photoURL });
-
-      const idToken = await result.user.getIdToken();
-      localStorage.setItem("authToken", idToken);
 
       return result.user;
     } catch (err) {
@@ -76,9 +58,6 @@ const AuthProvider = ({ children }) => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       setUser(result.user);
 
-      const idToken = await result.user.getIdToken();
-      localStorage.setItem("authToken", idToken);
-
       return result.user;
     } catch (err) {
       handleError(err);
@@ -90,8 +69,6 @@ const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setUser(null);
-
-      localStorage.removeItem("authToken");
     } catch (err) {
       handleError(err);
     }
@@ -99,19 +76,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-
       if (currentUser) {
-        const userInfo = { email: currentUser.email };
-        axios.post("/jwt", userInfo).then((res) => {
-          if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
-            setLoading(false);
-          }
-        });
+        setUser(currentUser);
+        setLoading(false);
       } else {
-        localStorage.removeItem("access-token");
+        setUser(null);
         setLoading(false);
       }
     });
@@ -142,3 +111,4 @@ AuthProvider.propTypes = {
 };
 
 export default AuthProvider;
+    
