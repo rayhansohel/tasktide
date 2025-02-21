@@ -13,14 +13,14 @@ const RegisterForm = () => {
   const { registerWithEmailPassword } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
 
   const handleGoogleSignInSuccess = () => {
-    navigate("/dashboard");
+    navigate(from, { replace: true });
   };
 
   const validatePassword = (password) => {
@@ -82,7 +82,7 @@ const RegisterForm = () => {
       };
       axiosPublic.post("/users", userInfo);
       toast.success("Registration successful!");
-      navigate("/dashboard");
+      navigate(from, { replace: true });
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         toast.error("Email is already in use. Try a different one.");

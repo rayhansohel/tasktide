@@ -9,10 +9,9 @@ import Logo from "../assets/tasktide-logo.png";
 
 const LoginForm = () => {
   const { userLogin } = useContext(AuthContext);
-
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -36,7 +35,7 @@ const LoginForm = () => {
   };
 
   const handleGoogleSignInSuccess = () => {
-    navigate("/dashboard");
+    navigate(from, { replace: true });
   };
 
   const handleSubmit = (e) => {
@@ -65,7 +64,7 @@ const LoginForm = () => {
         const user = result.user;
         console.log(user);
         toast.success("Login successful!");
-        navigate("/dashboard");
+        navigate(from, { replace: true });
       })
       .catch(() => {
         toast.error("Invalid email or password");
