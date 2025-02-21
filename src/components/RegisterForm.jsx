@@ -3,14 +3,13 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 import { AuthContext } from "../context/AuthContext";
 import SocialLogin from "./SocialLogin";
 import Logo from "../assets/tasktide-logo.png";
+import axios from "axios";
 
 const RegisterForm = () => {
   const { registerWithEmailPassword } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -80,7 +79,7 @@ const RegisterForm = () => {
         email: email,
         role: "user",
       };
-      axiosPublic.post("/users", userInfo);
+      axios.post("/users", userInfo);
       toast.success("Registration successful!");
       navigate(from, { replace: true });
     } catch (err) {

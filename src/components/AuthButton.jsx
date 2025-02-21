@@ -5,9 +5,8 @@ import ProfilePlaceholder from "../assets/profile-placeholder.png";
 import { BiLogOutCircle } from "react-icons/bi";
 import { RiDashboardLine } from "react-icons/ri";
 import UserCard from "./UserCard";
-import LoginButton from './LoginButton';
-
-
+import LoginButton from "./LoginButton";
+import RegisterButton from "./RegisterButton";
 
 const AuthButton = () => {
   const [user, setUser] = useState(null);
@@ -70,7 +69,7 @@ const AuthButton = () => {
           {/* Dropdown Menu */}
           {showDropdown && (
             <div
-              className="absolute right-0 top-12 bg-base-200 border border-base-300 rounded-lg p-4"
+              className="absolute -right-4 top-14 bg-base-200 border border-base-300 rounded-lg p-4"
               style={{ minWidth: "max-content" }}
             >
               <UserCard />
@@ -78,7 +77,7 @@ const AuthButton = () => {
               <ul>
                 <li>
                   <Link
-                    to= "/dashboard"
+                    to="/dashboard"
                     className="p-2 flex items-center gap-2 hover:bg-base-300 rounded-md"
                   >
                     <RiDashboardLine className="text-lg" />
@@ -99,7 +98,10 @@ const AuthButton = () => {
           )}
         </div>
       ) : (
-        <LoginButton />
+        <div className="flex gap-4">
+          <LoginButton />
+          <RegisterButton />
+        </div>
       )}
     </div>
   );

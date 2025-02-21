@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/tasktide-logo.png";
 import Febicon from "../assets/febicon.png";
-import LoginButton from "./LoginButton";
-import RegisterButton from "./RegisterButton";
+import AuthButton from "./AuthButton";
 
 const Navbar = () => {
   return (
@@ -20,10 +19,7 @@ const Navbar = () => {
 
         {/* Auth button */}
         <div className="min-w-20 flex justify-end items-center gap-2">
-          <div className="flex gap-4">
-            <LoginButton />
-            <RegisterButton />
-          </div>
+          <AuthButton />
         </div>
       </div>
     </div>
