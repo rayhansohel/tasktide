@@ -1,8 +1,7 @@
 import { RiLoginCircleLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-const LoginButton = () => {
 
-  
+const LoginButton = () => {
   return (
     <div>
       <Link

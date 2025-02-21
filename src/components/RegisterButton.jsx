@@ -1,8 +1,7 @@
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-const RegisterButton = () => {
 
-  
+const RegisterButton = () => {
   return (
     <div>
       <Link
