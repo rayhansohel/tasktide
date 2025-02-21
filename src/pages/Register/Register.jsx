@@ -1,8 +1,9 @@
+import RegisterForm from "../../components/RegisterForm";
 
 const Register = () => {
     return (
         <div>
-            I am Register Page
+            <RegisterForm />
         </div>
     );
 };

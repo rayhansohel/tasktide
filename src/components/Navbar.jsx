@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/tasktide-logo.png";
+import Febicon from "../assets/febicon.png";
 import LoginButton from "./LoginButton";
 import RegisterButton from "./RegisterButton";
 
@@ -11,7 +12,8 @@ const Navbar = () => {
         <div className="flex items-center min-w-20 gap-2">
           <Link to="/">
             <div className="flex items-center justify-center gap-1">
-              <img src={Logo} alt="Logo" className="w-32" />
+              <img src={Logo} alt="Logo" className="w-32 hidden sm:flex" />
+              <img src={Febicon} alt="Logo" className="w-8 sm:hidden" />
             </div>
           </Link>
         </div>

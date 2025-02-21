@@ -3,7 +3,7 @@ import Logo from "../../assets/tasktide-logo.png";
 import LaptopMockup from "../../assets/laptop-mockup.png";
 import MobileMockup from "../../assets/mobile-mockup.png";
 import HeroMockup from "../../assets//hero-mockup.png";
-import RegisterButton from "../../components/RegisterButton";
+
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
           className="w-80 h-auto  object-contain"
         />
       </div>
-      <div className="flex flex-col gap-4 px-4 md:px-10 2xl:px-20 py-10 flex-1">
+      <div className="flex flex-col gap-4 px-4 md:px-10 2xl:px-20 py-10 flex-1 w-full">
         {/* Brand Logo */}
         <div>
           <Link to="/">
@@ -27,9 +27,10 @@ const Home = () => {
         <h1 className="text-xl md:text-3xl text-primary">
           To-Do List & Task Management <br></br> for Smart People
         </h1>
-        <p className="mt-4 opacity-70">
-          Manage your tasks efficiently with real-time updates and a smooth
-          drag-and-drop interface.
+        <p className="opacity-70">
+          Effortlessly manage tasks with real-time updates, seamless
+          drag-and-drop functionality, and a user-friendly interface for
+          enhanced productivity.
         </p>
         <div className="mt-6">
           <Link to="/dashboard">
