@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://tasktide-app.vercel.app",
+  baseURL: "https://tasktide-server.vercel.app",
 });
 
 const useAxiosPublic = () => {
@@ -9,3 +9,7 @@ const useAxiosPublic = () => {
 };
 
 export default useAxiosPublic;
+
+
+// https://tasktide-server.vercel.app 
+// http://localhost:5000 
