@@ -36,7 +36,7 @@ const LoginForm = () => {
   };
 
   const handleGoogleSignInSuccess = () => {
-    navigate(from, { replace: true });
+    navigate("/dashboard");
   };
 
   const handleSubmit = (e) => {
@@ -65,7 +65,7 @@ const LoginForm = () => {
         const user = result.user;
         console.log(user);
         toast.success("Login successful!");
-        navigate(from, { replace: true });
+        navigate("/dashboard");
       })
       .catch(() => {
         toast.error("Invalid email or password");
