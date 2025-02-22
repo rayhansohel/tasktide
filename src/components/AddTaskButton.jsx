@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import io from "socket.io-client";
 
 const AddTaskButton = () => {
   const axiosPublic = useAxiosPublic();
@@ -13,6 +14,19 @@ const AddTaskButton = () => {
     description: "",
     category: "To-Do",
   });
+
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    // Connect to the Socket.IO server
+    const socketIo = io("https://tasktide-server.vercel.app ");
+    setSocket(socketIo);
+
+    // Cleanup on component unmount
+    return () => {
+      if (socketIo) socketIo.disconnect();
+    };
+  }, []);
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => {
@@ -39,9 +53,16 @@ const AddTaskButton = () => {
     };
 
     try {
+      // Add task to the database
       const response = await axiosPublic.post("/tasks", taskData);
       console.log("Task added:", response.data);
       toast.success("Task added successfully!");
+
+      // Emit task to the frontend via Socket.IO
+      if (socket) {
+        socket.emit("taskAdded", response.data); // Emit task to the server
+      }
+
       closeModal();
     } catch (error) {
       console.error("Error adding task:", error);
@@ -52,7 +73,7 @@ const AddTaskButton = () => {
   return (
     <div>
       {/* Add Task Button */}
-      <button onClick={openModal} className="btn btn-sm btn-secondary w-full">
+      <button onClick={openModal} className="btn btn-sm btn-accent w-full">
         Add Task
       </button>
 
