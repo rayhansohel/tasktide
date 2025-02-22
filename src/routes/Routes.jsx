@@ -9,10 +9,6 @@ import PrivateRoute from "./PrivateRoute";
 import Error404 from "../pages/Error/Error404";
 import Tasks from "../pages/Tasks/Tasks";
 
-
-
-
-
 const Routes = createBrowserRouter([
   {
     path: "/",
