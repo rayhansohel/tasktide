@@ -5,39 +5,13 @@ import { TbRun } from "react-icons/tb";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../../context/ThemeContext";
 import { MdDone, MdOutlineDeleteForever } from "react-icons/md";
-import { io } from "socket.io-client";
 
 const TodoTasks = () => {
   const { tasks, loading, error, refetch } = useTasks();
   const axiosPublic = useAxiosPublic();
   const { theme } = useContext(ThemeContext);
-  const [socket, setSocket] = useState(null);
 
   const todoTasks = tasks.filter((task) => task.category === "To-Do");
-
-  useEffect(() => {
-    // Initialize Socket.IO connection
-    const socketIo = io("https://tasktide-server.vercel.app ");
-    setSocket(socketIo);
-
-    // Listen for task updates from the server
-    socketIo.on("taskAdded", (newTask) => {
-      refetch();
-    });
-
-    socketIo.on("taskUpdated", (updatedTask) => {
-      refetch();
-    });
-
-    socketIo.on("taskDeleted", (deletedTaskId) => {
-      refetch();
-    });
-
-    // Cleanup on component unmount
-    return () => {
-      socketIo.disconnect();
-    };
-  }, [refetch]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -46,8 +20,7 @@ const TodoTasks = () => {
   const handleUpdate = async (taskId, newCategory) => {
     try {
       await axiosPublic.put(`/tasks/${taskId}`, { category: newCategory });
-      socket?.emit("taskUpdated", { taskId, category: newCategory }); // Emit update event
-      refetch();
+      refetch(); // Refetch after update
     } catch (error) {
       console.error("Error updating task:", error);
     }
@@ -57,8 +30,7 @@ const TodoTasks = () => {
   const handleDelete = async (taskId) => {
     try {
       await axiosPublic.delete(`/tasks/${taskId}`);
-      socket?.emit("taskDeleted", taskId); // Emit delete event
-      refetch();
+      refetch(); // Refetch after deletion
     } catch (error) {
       console.error("Error deleting task:", error);
     }
@@ -73,13 +45,9 @@ const TodoTasks = () => {
           {todoTasks.map((task) => (
             <li key={task._id} className="p-4 bg-base-300 rounded-xl space-y-2">
               <div className="mb-6 space-y-2">
-                <h3 className="text-lg font-semibold text-neutral">
-                  {task.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-neutral">{task.title}</h3>
                 <p className="opacity-70">{task.description}</p>
-                <p className="opacity-50">
-                  {new Date(task.timestamp).toLocaleString()}
-                </p>
+                <p className="opacity-50">{new Date(task.timestamp).toLocaleString()}</p>
               </div>
               {/* Buttons */}
               <div className="flex gap-2">

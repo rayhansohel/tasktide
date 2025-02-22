@@ -4,42 +4,14 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../../context/ThemeContext";
 import { MdDone, MdOutlineDeleteForever } from "react-icons/md";
-import { io } from "socket.io-client";
 import { GoTasklist } from "react-icons/go";
 
 const InProgressTasks = () => {
   const { tasks, loading, error, refetch } = useTasks();
   const axiosPublic = useAxiosPublic();
   const { theme } = useContext(ThemeContext);
-  const [socket, setSocket] = useState(null);
 
-  const inProgressTasks = tasks.filter(
-    (task) => task.category === "In Progress"
-  );
-
-  useEffect(() => {
-    // Initialize Socket.IO connection
-    const socketIo = io("https://tasktide-server.vercel.app ");
-    setSocket(socketIo);
-
-    // Listen for task updates from the server
-    socketIo.on("taskAdded", () => {
-      refetch();
-    });
-
-    socketIo.on("taskUpdated", () => {
-      refetch();
-    });
-
-    socketIo.on("taskDeleted", () => {
-      refetch();
-    });
-
-    // Cleanup on component unmount
-    return () => {
-      socketIo.disconnect();
-    };
-  }, [refetch]);
+  const inProgressTasks = tasks.filter((task) => task.category === "In Progress");
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
@@ -48,7 +20,6 @@ const InProgressTasks = () => {
   const handleUpdate = async (taskId, newCategory) => {
     try {
       await axiosPublic.put(`/tasks/${taskId}`, { category: newCategory });
-      socket?.emit("taskUpdated", { taskId, category: newCategory }); // Emit update event
       refetch();
     } catch (error) {
       console.error("Error updating task:", error);
@@ -59,7 +30,6 @@ const InProgressTasks = () => {
   const handleDelete = async (taskId) => {
     try {
       await axiosPublic.delete(`/tasks/${taskId}`);
-      socket?.emit("taskDeleted", taskId); // Emit delete event
       refetch();
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -75,13 +45,9 @@ const InProgressTasks = () => {
           {inProgressTasks.map((task) => (
             <li key={task._id} className="p-4 bg-base-300 rounded-xl space-y-2">
               <div className="mb-6 space-y-2">
-                <h3 className="text-lg font-semibold text-accent">
-                  {task.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-accent">{task.title}</h3>
                 <p className="opacity-70">{task.description}</p>
-                <p className="opacity-50">
-                  {new Date(task.timestamp).toLocaleString()}
-                </p>
+                <p className="opacity-50">{new Date(task.timestamp).toLocaleString()}</p>
               </div>
               {/* Buttons */}
               <div className="flex gap-2">
