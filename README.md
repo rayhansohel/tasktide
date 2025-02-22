@@ -29,23 +29,18 @@ TaskTide is a task management application that allows users to create, update, d
 ### Steps to Run Locally
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/tasktide.git
+   git clone https://github.com/rayhansohel/tasktide.git
    cd tasktide/frontend
    ```
 2. Install dependencies:
    ```sh
    npm install
    ```
-3. Create a `.env` file and add your Firebase credentials:
-   ```sh
-   VITE_FIREBASE_API_KEY=your_api_key
-   VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-   ```
-4. Start the development server:
+3. Start the development server:
    ```sh
    npm run dev
    ```
-5. Open `http://localhost:5173` in your browser.
+4. Open `http://localhost:5173` in your browser.
 
 
 
