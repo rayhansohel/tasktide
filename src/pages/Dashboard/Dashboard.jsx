@@ -13,7 +13,7 @@ const Dashboard = () => {
         <div className="flex items-center justify-center w-full h-12 bg-neutral/70 rounded-xl text-center">
           <h2 className="text-xl">To-Do List</h2>
         </div>
-        <div className="overflow-y-auto h-[calc(100vh-212px)] overflow-hidden">
+        <div className="overflow-y-auto md:h-[calc(100vh-294px)] lg:h-[calc(100vh-212px)] overflow-hidden">
           <TodoTasks />
         </div>
       </div>
@@ -21,7 +21,7 @@ const Dashboard = () => {
         <div className="flex items-center justify-center w-full h-12 bg-accent/70 rounded-xl text-center">
           <h2 className="text-xl">In-Progress List</h2>
         </div>
-        <div className="overflow-y-auto h-[calc(100vh-212px)] overflow-hidden">
+        <div className="overflow-y-auto md:h-[calc(100vh-294px)] lg:h-[calc(100vh-212px)] overflow-hidden">
           <InProgressTasks />
         </div>
       </div>
@@ -29,7 +29,7 @@ const Dashboard = () => {
         <div className="flex items-center justify-center w-full h-12 bg-success/70 rounded-xl text-center">
           <h2 className="text-xl">Done List</h2>
         </div>
-        <div className="overflow-y-auto h-[calc(100vh-212px)] overflow-hidden">
+        <div className="overflow-y-auto md:h-[calc(100vh-294px)] lg:h-[calc(100vh-212px)] overflow-hidden">
           <DoneTasks />
         </div>
       </div>

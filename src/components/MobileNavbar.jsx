@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/tasktide-logo.png";
-import AuthButton from "./AuthButton";
+import AddTaskButton from "./AddTaskButton";
+import MobileAuthButton from "./MobileAuthButton";
 
-const Navbar = () => {
+
+
+const MobileNavbar = () => {
   return (
-    <div className="bg-base-200 border border-base-300 rounded-box">
+    <div className="bg-base-200 border border-base-300 rounded-box w-full">
       <div className="p-4 flex justify-between items-center">
         {/* Brand Logo */}
         <div className="flex items-center min-w-20 gap-2">
@@ -15,13 +18,14 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Auth button */}
-        <div className="min-w-20 flex justify-end items-center gap-2">
-          <AuthButton />
+        {/*Mobile Menu*/}
+        <div className="flex gap-4 min-w-20">
+          <AddTaskButton />
+          <MobileAuthButton/>
         </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default MobileNavbar;

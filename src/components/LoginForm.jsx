@@ -11,7 +11,7 @@ const LoginForm = () => {
   const { userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/task";
 
   const emailRef = useRef();
   const passwordRef = useRef();

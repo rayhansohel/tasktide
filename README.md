@@ -3,7 +3,7 @@
 TaskTide is a task management application that allows users to create, update, delete, and reorder tasks with a drag-and-drop interface. The frontend is built with React and Vite, ensuring a fast and responsive experience.
 
 ## Live Demo
-[TaskTide](https://tasktide-app.vercel.app/)
+[TaskTide](https://tasktidee.netlify.app/)
 
 ## Features
 - User authentication with Firebase (Google Sign-in)

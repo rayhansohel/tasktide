@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
+import MobileNavbar from "../components/MobileNavbar";
 
 
 const DashboardLayout = () => {
@@ -11,7 +12,10 @@ const DashboardLayout = () => {
       </div>
 
       <div className="flex-1 text-sm font-poppins text-primary tracking-wide min-h-[calc(100vh-96px)] flex flex-col gap-4">
-      <div className="min-h-[calc(100vh-114px)]">
+      <div className="flex lg:hidden sticky top-4 z-40">
+        <MobileNavbar/>
+      </div>
+      <div className="min-h-[calc(100vh-196px)] lg:min-h-[calc(100vh-114px)]">
         <Outlet />
       </div>
       <div>

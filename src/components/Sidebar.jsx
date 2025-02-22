@@ -6,13 +6,14 @@ import { Tooltip } from "react-tooltip";
 import ThemeContext from "../context/ThemeContext";
 import { useContext } from "react";
 import AddTaskButton from "./AddTaskButton";
+import LogoutButton from "./LogoutButton";
 
 const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <div className="w-96 h-full flex flex-col bg-base-200 rounded-box p-4">
-      <div className="flex items-center gap-2 justify-between w-full p-4">
+      <div className="flex items-center gap-2 justify-between w-full p-4 bg-base-300 rounded-xl">
         {/* Brand Logo */}
         <div className="flex items-center min-w-20 gap-2">
           <Link to="/">
@@ -21,13 +22,13 @@ const Sidebar = () => {
             </div>
           </Link>
         </div>
-        {/* Theme Toggle */}
+        {/* Gome Button */}
         <div className="flex gap-2">
           <Link
             to="/"
             data-tooltip-id="home-tooltip"
-            data-tooltip-content="Go Back to Home"
-            className="w-[32px] h-[32px] border border-base-300 rounded-md flex items-center justify-center"
+            data-tooltip-content="Homepage"
+            className="w-8 h-8 bg-secondary rounded-md flex items-center justify-center text-accent hover:bg-secondary/70"
           >
             <GoHome className="text-lg hover:text-accent" />
             <Tooltip
@@ -43,18 +44,17 @@ const Sidebar = () => {
           </Link>
         </div>
       </div>
-      <hr className="border-base-300 mx-4" />
 
       {/* Menu Items */}
-      <div className="flex-grow mt-4 p-4">
+      <div className="flex-grow mt-4">
         <AddTaskButton />
       </div>
 
       {/* User info */}
       <div>
-        <hr className="border-base-300 mx-4" />
-        <div className="flex justify-between items-center w-full p-4">
+        <div className="flex justify-between items-center w-full p-4 bg-base-300 rounded-xl">
           <UserCard />
+          <LogoutButton />
         </div>
       </div>
     </div>

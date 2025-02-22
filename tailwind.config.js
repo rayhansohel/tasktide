@@ -12,7 +12,7 @@ export default {
       {
         light: {
           primary: "#000000",
-          secondary: "#ffffff",
+          secondary: "#d1d5db",
           accent: "#9002F1",
           neutral: "#FF0055",
           "base-100": "#FFFFFF",
@@ -25,7 +25,7 @@ export default {
         },
         dark: {
           primary: "#FFFFFF",
-          secondary: "#000000",
+          secondary: "#1f2937",
           accent: "#9002F1",
           neutral: "#FF0055",
           "base-100": "#010409",

@@ -30,7 +30,7 @@ const Routes = createBrowserRouter([
   },
 
   {
-    path: "/dashboard",
+    path: "/task",
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -38,7 +38,7 @@ const Routes = createBrowserRouter([
     ),
     errorElement: <Error404 />,
     children: [
-      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/task", element: <Dashboard /> },
     ],
   },
 ]);

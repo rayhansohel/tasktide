@@ -22,7 +22,7 @@ const ThemeToggle = () => {
         {theme === "dark" ? (
           <HiSun className="text-lg text-accent" />
         ) : (
-          <HiMoon className="text-lg text-neutral" />
+          <HiMoon className="text-lg text-accent" />
         )}
       </button>
       <Tooltip

@@ -13,7 +13,7 @@ const RegisterForm = () => {
   const { registerWithEmailPassword } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/task";
 
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");

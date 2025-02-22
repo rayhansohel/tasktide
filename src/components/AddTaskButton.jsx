@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
+import { MdAddTask } from "react-icons/md";
 
 const AddTaskButton = () => {
   const axiosPublic = useAxiosPublic();
@@ -54,8 +55,8 @@ const AddTaskButton = () => {
   return (
     <div>
       {/* Add Task Button */}
-      <button onClick={openModal} className="btn btn-sm btn-accent w-full">
-        Add Task
+      <button onClick={openModal} className="btn btn-sm btn-accent w-full flex justify-center items-center">
+      <MdAddTask className="text-lg" /> Add Task
       </button>
 
       {/* Modal */}

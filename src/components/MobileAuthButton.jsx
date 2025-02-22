@@ -5,9 +5,10 @@ import { BiLogOutCircle } from "react-icons/bi";
 import UserCard from "./UserCard";
 import LoginButton from "./LoginButton";
 import RegisterButton from "./RegisterButton";
-import TaskButton from "./TaskButton";
+import { GrHomeRounded } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
-const AuthButton = () => {
+const MobileAuthButton = () => {
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -74,7 +75,11 @@ const AuthButton = () => {
               <div className="flex justify-between items-center w-full p-4 bg-base-300 rounded-lg">
                 <UserCard />
               </div>
-              <TaskButton />
+              <Link to="/">
+                <button className="btn btn-sm btn-accent w-full">
+                  <GrHomeRounded /> Homepage
+                </button>
+              </Link>
               <button
                 className="w-full btn btn-sm btn-neutral flex justify-center items-center"
                 onClick={handleLogout}
@@ -95,4 +100,4 @@ const AuthButton = () => {
   );
 };
 
-export default AuthButton;
+export default MobileAuthButton;
