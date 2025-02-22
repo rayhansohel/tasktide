@@ -4,10 +4,12 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { MdAddTask } from "react-icons/md";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddTaskButton = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
+  const queryClient = useQueryClient();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [task, setTask] = useState({
     title: "",
@@ -40,10 +42,10 @@ const AddTaskButton = () => {
     };
 
     try {
-      // Add task to the database
-      const response = await axiosPublic.post("/tasks", taskData);
-      console.log("Task added:", response.data);
+      await axiosPublic.post("/tasks", taskData);
       toast.success("Task added successfully!");
+
+      queryClient.invalidateQueries(["tasks", user?.email]);
 
       closeModal();
     } catch (error) {
@@ -54,12 +56,10 @@ const AddTaskButton = () => {
 
   return (
     <div>
-      {/* Add Task Button */}
       <button onClick={openModal} className="btn btn-sm btn-accent w-full flex justify-center items-center">
-      <MdAddTask className="text-lg" /> Add Task
+        <MdAddTask className="text-lg" /> Add Task
       </button>
 
-      {/* Modal */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -93,7 +93,7 @@ const AddTaskButton = () => {
             />
           </div>
           <button type="submit" className="btn btn-sm btn-accent w-full">
-            Add Task
+            Add New Task
           </button>
         </form>
       </Modal>
@@ -102,4 +102,3 @@ const AddTaskButton = () => {
 };
 
 export default AddTaskButton;
-

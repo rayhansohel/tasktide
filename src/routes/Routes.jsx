@@ -5,9 +5,11 @@ import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import DashboardLayout from "../layout/DashboardLayout";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import Error404 from "../pages/Error/Error404";
+import Tasks from "../pages/Tasks/Tasks";
+
+
 
 
 
@@ -38,7 +40,7 @@ const Routes = createBrowserRouter([
     ),
     errorElement: <Error404 />,
     children: [
-      { path: "/task", element: <Dashboard /> },
+      { path: "/task", element: <Tasks /> },
     ],
   },
 ]);

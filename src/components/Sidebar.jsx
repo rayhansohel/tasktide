@@ -12,7 +12,7 @@ const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="w-96 h-full flex flex-col bg-base-200 rounded-box p-4">
+    <div className="w-96 h-full flex flex-col bg-base-200 rounded-box border border-base-300 p-4">
       <div className="flex items-center gap-2 justify-between w-full p-4 bg-base-300 rounded-xl">
         {/* Brand Logo */}
         <div className="flex items-center min-w-20 gap-2">
